@@ -69,10 +69,18 @@ export default class Canvas extends Component {
     }
   }
 
+  _saveArt () {
+    const { canvas } = this.refs
+
+    var dataUrl = canvas.toDataURL('images/png')
+    console.log('dataUrl: ', dataUrl)
+  }
+
   render () {
     return (
       <div>
         <canvas ref="canvas" width={600} height={600} />
+        <button onClick={() => this._saveArt()}>save art</button>
       </div>
     )
   }
