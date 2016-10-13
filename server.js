@@ -1,4 +1,7 @@
+// PORT
 const PORT = process.env.PORT || 8000
+
+// REQUIRES
 const path = require('path')
 const morgan = require('morgan')
 const express = require('express')
@@ -7,26 +10,32 @@ const bodyParser = require('body-parser')
 const webpackConfig = require('./webpack.config')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
-require("dotenv").config()
+require('dotenv').config()
 
-
+// SERVER DECLARATION
 const app = express()
 const compiler = webpack(webpackConfig)
 
+// MIDDLEWARE
 app.use(morgan('dev'))
 app.use(express.static('build'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// WEBPACK CONFIG
 app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath, noInfo: true
 }))
 
 app.use(webpackHotMiddleware(compiler))
-app.use('/api',require('./routes/api'))
-app.use("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./build/index.html"));
-});
+
+// ROUTES
+app.use('/api', require('./routes/api'))
+app.use('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './build/index.html'))
+})
+
+// SERVER LISTEN
 app.listen(PORT, err => {
-  console.log(err || `Express listening on port ${PORT}`);
+  console.log(err || `Express listening on port ${PORT}`)
 })
