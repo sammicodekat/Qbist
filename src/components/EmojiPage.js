@@ -13,9 +13,7 @@ export default class SearchPage extends Component {
     super()
 
     this.state = {
-      faceRectangle: EmojiStore.getFaceRectangle(),
-      faceLandmarks: EmojiStore.getFaceLandmarks(),
-      faceAttributes: EmojiStore.getFaceAttributes(),
+      imgData: EmojiStore.getImgData(),
       sourceImg: EmojiStore.getSourceImg()
     }
 
@@ -32,23 +30,21 @@ export default class SearchPage extends Component {
 
   _onChange () {
     this.setState({
-      faceRectangle: EmojiStore.getFaceRectangle(),
-      faceLandmarks: EmojiStore.getFaceLandmarks(),
-      faceAttributes: EmojiStore.getFaceAttributes(),
+      imgData: EmojiStore.getImgData(),
       sourceImg: EmojiStore.getSourceImg()
     })
+
   }
 
   render () {
-    console.log('this.state.sourceImg: ', this.state.sourceImg)
     return (
       <Grid>
-        <Row color="orange" textAlign="center">
-          <Column><SearchBar /></Column>
+        <Row color="orange" textAlign="center" columns ={2}>
+          <Column ><SearchBar /></Column>
         </Row>
         <Row>
-          <Column><Canvas {...this.state} /></Column>
-          <Column><SourceImage {...this.state} /></Column>
+          <Column width={8}><Canvas {...this.state} /></Column>
+          <Column width={8}><SourceImage {...this.state} /></Column>
         </Row>
       </Grid>
     )

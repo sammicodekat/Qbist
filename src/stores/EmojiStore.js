@@ -1,9 +1,7 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 
-let _faceRectangle = {}
-let _faceLandmarks = {}
-let _faceAttributes = {}
+let _imgData ={}
 let _sourceImage = ''
 
 class EmojiStore extends EventEmitter {
@@ -12,14 +10,11 @@ class EmojiStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GOT_IMGDATA':
-          _faceRectangle = action.payload.faceRectangle
-          _faceLandmarks = action.payload.faceLandmarks
-          _faceAttributes = action.payload.faceAttributes
+          _imgData = action.payload
           this.emit('CHANGE')
           break
         case 'STORE_SOURCE_IMG':
           _sourceImage = action.payload
-          console.log('_sourceImage: ', _sourceImage)
           this.emit('CHANGE')
           break
       }
@@ -34,18 +29,9 @@ class EmojiStore extends EventEmitter {
     this.removeListener('CHANGE', cb)
   }
 
-  getFaceRectangle () {
-    return _faceRectangle
+  getImgData() {
+    return _imgData
   }
-
-  getFaceLandmarks () {
-    return _faceLandmarks
-  }
-
-  getFaceAttributes () {
-    return _faceAttributes
-  }
-
   getSourceImg () {
     return _sourceImage
   }
