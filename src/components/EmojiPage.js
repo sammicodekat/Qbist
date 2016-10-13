@@ -14,6 +14,7 @@ export default class SearchPage extends Component {
 
     this.state = {
       imgData: EmojiStore.getImgData(),
+      imgEmo: EmojiStore.getImgEmo(),
       sourceImg: EmojiStore.getSourceImg()
     }
 
@@ -31,6 +32,7 @@ export default class SearchPage extends Component {
   _onChange () {
     this.setState({
       imgData: EmojiStore.getImgData(),
+      imgEmo: EmojiStore.getImgEmo(),
       sourceImg: EmojiStore.getSourceImg()
     })
 

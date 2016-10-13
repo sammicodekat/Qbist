@@ -16,7 +16,7 @@ export default class Canvas extends Component {
 
   updateCanvas () {
     const {canvas} = this.refs
-    const {imgData} = this.props
+    const {imgData,imgEmo} = this.props
     if (imgData.faceAttributes) {
       const {faceAttributes, faceLandmarks, faceRectangle} = imgData
       let landmarks = faceLandmarks

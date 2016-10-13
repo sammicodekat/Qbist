@@ -5,7 +5,7 @@ const API = {
   upload (url) {
     post('/api/faceRec/', {url: url})
     .then(res => {
-      ServerActions.gotImgData(res.data[0])
+      ServerActions.gotImgData(res.data)
     })
     .catch(console.error)
   }

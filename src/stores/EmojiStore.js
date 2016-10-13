@@ -1,8 +1,9 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 
-let _imgData ={}
 let _sourceImage = ''
+let _face = {}
+let _emotion = {}
 
 class EmojiStore extends EventEmitter {
   constructor () {
@@ -10,7 +11,8 @@ class EmojiStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GOT_IMGDATA':
-          _imgData = action.payload
+          _face = action.payload[0][0]
+          _emotion = action.payload[1][0]
           this.emit('CHANGE')
           break
         case 'STORE_SOURCE_IMG':
@@ -30,8 +32,14 @@ class EmojiStore extends EventEmitter {
   }
 
   getImgData() {
-    return _imgData
+    return _face
   }
+
+  getImgEmo(){
+    return _emotion
+  }
+
+
   getSourceImg () {
     return _sourceImage
   }
