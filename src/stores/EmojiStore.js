@@ -23,6 +23,7 @@ class EmojiStore extends EventEmitter {
           break
         case 'GOT_ARTWORKS':
           _artworks = action.payload
+          _artworks.reverse()
           this.emit('CHANGE')
           break
       }

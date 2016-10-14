@@ -19,8 +19,8 @@ const compiler = webpack(webpackConfig)
 // MIDDLEWARE
 app.use(morgan('dev'))
 app.use(express.static('build'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 
 // WEBPACK CONFIG
 app.use(webpackDevMiddleware(compiler, {

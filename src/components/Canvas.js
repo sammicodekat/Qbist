@@ -93,8 +93,12 @@ export default class Canvas extends Component {
       .then(this._createNew(ctx, 'bottomLip', nl1,nl2, mouthLeft.x, underLipTop.y, emotion))
       .then(this._createNew(ctx, b, 1,1, mouthLeft.x, upperLipTop.y, emotion))
       .then(this._createNew(ctx, m, 1,4, mouthLeft.x, upperLipTop.y-100, emotion))
-      .then(()=>{ if (glasses === 'sunglasses') return this._createNew(ctx, glasses, 1,3, eyeLeftOuter.x, noseRootLeft.y - 50)
-        else {
+      .then(()=>{
+
+          console.log('glasses: ', glasses)
+        if (glasses === 'Sunglasses') {
+          return this._createNew(ctx, glasses, 1,3, eyeLeftOuter.x, noseRootLeft.y - 50)
+        } else {
           (this._createNew(ctx, 'eye', nel1,nel2, eyeLeftOuter.x, eyeLeftTop.y, emotion))
           .then(this._createNew(ctx, 'eye',ner1 ,ner2, eyeRightInner.x, eyeRightTop.y, emotion))
           .then(this._createNew(ctx, 'pupil', 1,5, pupilLeft.x, pupilLeft.y, emotion))
@@ -107,15 +111,14 @@ export default class Canvas extends Component {
     _createNew (ctx, item, itemNum1,itemNum2, xp, yp, emotion) {
       let promise = new Promise((resolve, reject) => {
         let source
-        console.log(item)
-        if (!itemNum2) { source = `./images/${item}.jpg` } else {
+        if (!itemNum2) { source = `./images/${item}.png` } else {
           var num = (Math.floor(Math.random() * (itemNum2-itemNum1 +1))+itemNum1)
           source = `./images/${item}${num}.png`
         }
         item = new Image()
         item.src = source
         item.onload = () => ctx.drawImage(item, xp, yp)
-        resolve(console.log(source))
+        resolve()
       })
       return promise
     }
