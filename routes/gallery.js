@@ -23,17 +23,4 @@ router.post('/', (req, res) => {
     })
 })
 
-// router.use((req,res,next) => {
-//   res.handle = (err,data) => res.status( err ? 400 :200).send(err || data)
-//   next()
-// })
-//
-// router.route('/')
-// .get((req, res) => {
-//   Gallery.getArt(req.body, res.handle)
-// })
-// .post((req, res) => {
-//   Gallery.addArt(req.body, res.handle)
-// })
-
 module.exports = router

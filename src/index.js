@@ -9,7 +9,7 @@ render(
   <Router history={browserHistory}>
     <Route path="/" component={Layout}>
       <IndexRoute component={EmojiPage} />
-      <Route path='/gallery' component ={GalleryPage}/>
+      <Route path="/gallery" component={GalleryPage} />
     </Route>
   </Router>,
   document.getElementById('root')

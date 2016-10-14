@@ -6,11 +6,15 @@ import { Menu } from 'semantic-ui-react'
 export default class Layout extends Component {
   render () {
     let path = this.props.location.pathname
+
     return (
       <div>
-        <Menu color="blue" inverted widths={3}>
-          <Menu.Item className={classNames({active: path === '/'})}><Link to="/">Create Emoji</Link></Menu.Item>
-          <Menu.Item className={classNames({active: path === '/gallery'})}><Link to ='/gallery'>Gallery</Link></Menu.Item>
+        <Menu inverted className="menu" stackable>
+          <Menu.Item>
+            <h1>Qbist</h1>
+          </Menu.Item>
+          <Menu.Item className={classNames({active: path === '/'})}><Link to="/">Create Qbist Art</Link></Menu.Item>
+          <Menu.Item className={classNames({active: path === '/gallery'})}><Link to="/gallery">Art Gallery</Link></Menu.Item>
         </Menu>
       {this.props.children}
       </div>

@@ -13,19 +13,18 @@ class EmojiStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GOT_IMGDATA':
-        _face = action.payload[0][0]
-        _emotion = action.payload[1][0]
-        this.emit('CHANGE')
-        break
+          _face = action.payload[0][0]
+          _emotion = action.payload[1][0]
+          this.emit('CHANGE')
+          break
         case 'STORE_SOURCE_IMG':
-        _sourceImage = action.payload
-        this.emit('CHANGE')
-        break
+          _sourceImage = action.payload
+          this.emit('CHANGE')
+          break
         case 'GOT_ARTWORKS':
-        _artworks = action.payload
-        console.log( '_artworks' , _artworks )
-        this.emit('CHANGE')
-        break
+          _artworks = action.payload
+          this.emit('CHANGE')
+          break
       }
     })
   }
@@ -38,21 +37,21 @@ class EmojiStore extends EventEmitter {
     this.removeListener('CHANGE', cb)
   }
 
-  getImgData() {
+  getImgData () {
     return _face
   }
 
-  getImgEmo(){
+  getImgEmo () {
     return _emotion
   }
 
   getSourceImg () {
     return _sourceImage
   }
-  getDataUrl(){
+  getDataUrl () {
     return _dataUrl
   }
-  getArtworks(){
+  getArtworks () {
     return _artworks
   }
 

@@ -41,12 +41,13 @@ export default class SearchPage extends Component {
   render () {
     return (
       <Grid>
-        <Row color="orange" textAlign="center" columns ={2}>
-          <Column ><SearchBar /></Column>
+        <Row textAlign="center" columns ={2}>
+          <SearchBar />
         </Row>
-        <Row>
-          <Column width={8}><Canvas {...this.state} /></Column>
-          <Column width={8}><SourceImage {...this.state} /></Column>
+        <Row columns='equal'>
+          <Column></Column>
+          <Column width={7} className="canvasArea"><Canvas {...this.state} /></Column>
+          <Column><SourceImage {...this.state} /></Column>
         </Row>
       </Grid>
     )

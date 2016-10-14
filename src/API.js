@@ -19,7 +19,6 @@ const API = {
    getArtwork(){
     get('/api/gallery/')
     .then(res => {
-      console.log( 'res.data' , res.data )
       ServerActions.gotArtworks(res.data)
     })
     .catch(console.error)

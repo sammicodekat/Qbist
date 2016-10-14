@@ -8,7 +8,6 @@ const ServerActions = {
     })
   },
   gotArtworks (artworks) {
-    console.log("artworks in server action",artworks)
     AppDispatcher.dispatch({
       type: 'GOT_ARTWORKS',
       payload: artworks
