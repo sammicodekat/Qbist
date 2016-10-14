@@ -6,7 +6,7 @@ const tablename = 'art'
 connection.query(`CREATE TABLE IF NOT EXISTS ${tablename} (
   title VARCHAR(100),
   author VARCHAR(50),
-  image LONGBLOB,
+  image LONGTEXT,
   id INT NOT NULL AUTO_INCREMENT,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)

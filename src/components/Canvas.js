@@ -29,7 +29,12 @@ export default class Canvas extends Component {
       let {noseRootLeft, noseLeftAlarOutTip} = landmarks
       let {underLipBottom, underLipTop, upperLipBottom, upperLipTop, mouthLeft, mouthRight} = landmarks
       let {top, left, width, height} = faceRectangle
-      
+      let {scores} = imgEmo
+      let emoSorted = Object.keys(scores).sort((a,b) => scores[b]-scores[a])
+      let emotion = emoSorted[0]
+
+      // let{anger,contempt,disgust,fear,happiness,neutral,sadness,surprise}=imgEmo.scores
+
 
       const relW = faceRectangle.width / 600
       const relH = faceRectangle.height / 600
@@ -54,7 +59,6 @@ export default class Canvas extends Component {
       if (glasses !== 'NoGlasses') this._createNew(ctx, 'ReadingGlasses', 3, noseRootLeft.x - noseRootLeft.x, noseRootLeft.y - 50)
     }
     // ctx.fillRect(300, 300, 500, 500)
-
   }
 
   _createNew (ctx, item, itemNum, xp, yp) {
