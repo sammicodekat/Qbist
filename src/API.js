@@ -1,4 +1,4 @@
-import { post } from 'axios'
+import { get, post } from 'axios'
 import ServerActions from './actions/ServerActions'
 
 const API = {
@@ -8,7 +8,23 @@ const API = {
       ServerActions.gotImgData(res.data)
     })
     .catch(console.error)
+  },
+  saveArt(artwork){
+    post('/api/gallery/', artwork)
+    .then(res => {
+      ServerActions.gotArtworks(res.data)
+    })
+    .catch(console.error)
+  },
+   getArtwork(){
+    get('/api/gallery/')
+    .then(res => {
+      console.log( 'res.data' , res.data )
+      ServerActions.gotArtworks(res.data)
+    })
+    .catch(console.error)
   }
+
 }
 
 export default API

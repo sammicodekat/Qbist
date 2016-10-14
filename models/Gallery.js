@@ -25,7 +25,7 @@ exports.getArt = (cb) => {
 }
 
 exports.addArt = (newArt) => {
-  console.log('this is addArt')
+  console.log('tnewArt',newArt)
   return new Promise((resolve, reject) => {
     let sql = squel.insert()
       .into(tablename)
@@ -34,6 +34,7 @@ exports.addArt = (newArt) => {
 
     connection.query(sql, (err, result) => {
       if (err) return reject(err)
+      console.log("result",result)
       resolve(result)
     })
   })

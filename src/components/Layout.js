@@ -10,7 +10,7 @@ export default class Layout extends Component {
       <div>
         <Menu color="blue" inverted widths={3}>
           <Menu.Item className={classNames({active: path === '/'})}><Link to="/">Create Emoji</Link></Menu.Item>
-          {/* <Menu.Item className={classNames({active: path === '/'})}><Link to ='/'>Saved Emojis</Link></Menu.Item> */}
+          <Menu.Item className={classNames({active: path === '/gallery'})}><Link to ='/gallery'>Gallery</Link></Menu.Item>
         </Menu>
       {this.props.children}
       </div>

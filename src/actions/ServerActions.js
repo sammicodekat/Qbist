@@ -6,6 +6,13 @@ const ServerActions = {
       type: 'GOT_IMGDATA',
       payload: imgData
     })
+  },
+  gotArtworks (artworks) {
+    console.log("artworks in server action",artworks)
+    AppDispatcher.dispatch({
+      type: 'GOT_ARTWORKS',
+      payload: artworks
+    })
   }
 }
 export default ServerActions

@@ -4,6 +4,8 @@ import AppDispatcher from '../AppDispatcher'
 let _sourceImage = ''
 let _face = {}
 let _emotion = {}
+let _dataUrl = ''
+let _artworks = []
 
 class EmojiStore extends EventEmitter {
   constructor () {
@@ -11,14 +13,19 @@ class EmojiStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GOT_IMGDATA':
-          _face = action.payload[0][0]
-          _emotion = action.payload[1][0]
-          this.emit('CHANGE')
-          break
+        _face = action.payload[0][0]
+        _emotion = action.payload[1][0]
+        this.emit('CHANGE')
+        break
         case 'STORE_SOURCE_IMG':
-          _sourceImage = action.payload
-          this.emit('CHANGE')
-          break
+        _sourceImage = action.payload
+        this.emit('CHANGE')
+        break
+        case 'GOT_ARTWORKS':
+        _artworks = action.payload
+        console.log( '_artworks' , _artworks )
+        this.emit('CHANGE')
+        break
       }
     })
   }
@@ -39,9 +46,14 @@ class EmojiStore extends EventEmitter {
     return _emotion
   }
 
-
   getSourceImg () {
     return _sourceImage
+  }
+  getDataUrl(){
+    return _dataUrl
+  }
+  getArtworks(){
+    return _artworks
   }
 
 }

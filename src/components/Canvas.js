@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import EmojiActions from "../actions/EmojiActions"
 
 export default class Canvas extends Component {
   constructor () {
     super()
     this.updateCanvas = this.updateCanvas.bind(this)
+    this.handleCreate = this.handleCreate.bind(this)
   }
 
   componentDidMount () {
@@ -27,6 +29,7 @@ export default class Canvas extends Component {
       let {noseRootLeft, noseLeftAlarOutTip} = landmarks
       let {underLipBottom, underLipTop, upperLipBottom, upperLipTop, mouthLeft, mouthRight} = landmarks
       let {top, left, width, height} = faceRectangle
+      
 
       const relW = faceRectangle.width / 600
       const relH = faceRectangle.height / 600
@@ -51,6 +54,7 @@ export default class Canvas extends Component {
       if (glasses !== 'NoGlasses') this._createNew(ctx, 'ReadingGlasses', 3, noseRootLeft.x - noseRootLeft.x, noseRootLeft.y - 50)
     }
     // ctx.fillRect(300, 300, 500, 500)
+
   }
 
   _createNew (ctx, item, itemNum, xp, yp) {
@@ -69,18 +73,32 @@ export default class Canvas extends Component {
     }
   }
 
-  _saveArt () {
+  handleCreate (e) {
+    e.preventDefault()
     const { canvas } = this.refs
-
-    var dataUrl = canvas.toDataURL('images/png')
-    console.log('dataUrl: ', dataUrl)
+    let dataUrl = canvas.toDataURL('images/png')
+    let {author,name} = this.refs
+    let artwork = {
+      title: name.value,
+      author: author.value,
+      image:dataUrl
+    }
+    author.value = ''
+    name.value = ''
+    EmojiActions.saveArt(artwork)
   }
 
   render () {
     return (
       <div>
         <canvas ref="canvas" width={600} height={600} />
-        <button onClick={() => this._saveArt()}>save art</button>
+        <div className="row">
+          <form onSubmit={(e) => this.handleCreate(e)}>
+            <input type="text" className="searchBar" ref="author" placeholder="please enter your name" required />
+            <input type="text" className="searchBar" ref="name" placeholder="name...." required />
+            <button >Submit Art</button>
+          </form>
+        </div>
       </div>
     )
   }
