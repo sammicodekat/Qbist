@@ -19,7 +19,6 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin()
   ],
 
-
   module: {
     loaders: [
       {
